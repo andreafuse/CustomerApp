@@ -1,0 +1,9 @@
+@use '@angular/material' as mat;
+@import "~typeface-roboto/index.css";
+@include mat.core();
+@import "./variables";
+@include mat.all-component-themes($app-theme);
+
+//     //Line-height must be unit-less fraction of the font-size.
+
+@include mat.all-component-typographies($app-typography);

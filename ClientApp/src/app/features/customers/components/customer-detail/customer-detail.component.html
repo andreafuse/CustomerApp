@@ -1,0 +1,81 @@
+<div style="display: flex; flex-direction: column; padding: 2rem; column-gap: 1rem; row-gap: 1rem;">
+
+    <div style="display: flex; flex-direction: row-reverse; column-gap: .5rem;">
+        <button mat-flat-button color="primary" [disabled]="formGroup.invalid" (click)="Save()">Save</button>
+        <button mat-flat-button routerLink="">Cancel</button>
+    </div>
+
+    <form [formGroup]="formGroup" novalidate
+        style="display: flex; flex-direction: column; flex-wrap: wrap; column-gap: 1rem; row-gap: 1rem;">
+
+        <mat-form-field appearance="outline" class="form-field" [hintLabel]="'Max length: 50'"
+            [color]="companyNameCtrl.invalid ? 'warn' : 'primary'">
+            <mat-label> Company Name </mat-label>
+            <input [required]="companyNameCtrl.hasValidator(Validators.required)" matInput
+                [formControl]="companyNameCtrl" />
+            <mat-hint align="end">{{companyNameCtrl.value?.length || 0}}/50</mat-hint>
+            <mat-error *ngIf="companyNameCtrl.invalid"> {{ getErrorMessages(companyNameCtrl) }} </mat-error>
+        </mat-form-field>
+        <div
+            style="display: inline-flex; align-items: center; justify-content: center; row-gap: 1rem; column-gap: 1rem; flex-wrap: wrap;">
+            <mat-form-field appearance="outline" class="form-field" style="flex-grow: 2;"
+                [hintLabel]="'Max length: 100'" [color]="addressCtrl.invalid ? 'warn' : 'primary'">
+                <mat-label> Address </mat-label>
+                <input [required]="addressCtrl.hasValidator(Validators.required)" matInput
+                    [formControl]="addressCtrl" />
+                <mat-hint align="end">{{addressCtrl.value?.length || 0}}/100</mat-hint>
+                <mat-error *ngIf="addressCtrl.invalid"> {{ getErrorMessages(addressCtrl) }} </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field" style="flex-grow: 1;" [hintLabel]="'Max length: 50'"
+                [color]="stateCtrl.invalid ? 'warn' : 'primary'">
+                <mat-label> State </mat-label>
+                <input [required]="stateCtrl.hasValidator(Validators.required)" matInput [formControl]="stateCtrl" />
+                <mat-hint align="end">{{stateCtrl.value?.length || 0}}/50</mat-hint>
+                <mat-error *ngIf="stateCtrl.invalid"> {{ getErrorMessages(stateCtrl) }} </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-field" style="flex-grow: 1;" [hintLabel]="'Max length: 50'"
+                [color]="countryCtrl.invalid ? 'warn' : 'primary'">
+                <mat-label> Country </mat-label>
+                <input [required]="countryCtrl.hasValidator(Validators.required)" matInput
+                    [formControl]="countryCtrl" />
+                <mat-hint align="end">{{countryCtrl.value?.length || 0}}/50</mat-hint>
+                <mat-error *ngIf="countryCtrl.invalid"> {{ getErrorMessages(countryCtrl) }} </mat-error>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="form-field">
+            <mat-label> Subscription State</mat-label>
+            <mat-select [formControl]="subscriptionStateCtrl">
+              <mat-option *ngFor="let opt of subsriptionStateOptions" [value]="opt.value">{{opt.label}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+    </form>
+
+    <table mat-table [dataSource]="invoices" *ngIf="!isNew">
+        <!-- Item Column -->
+        <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef> Invoice Number </th>
+            <td mat-cell *matCellDef="let row"> {{row.number}} </td>
+            <td mat-footer-cell *matFooterCellDef> Total </td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let row"> {{row.date | date}} </td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <!-- Cost Column -->
+        <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef> Total </th>
+            <td mat-cell *matCellDef="let row"> {{row.total | currency}} </td>
+            <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+    </table>
+</div>

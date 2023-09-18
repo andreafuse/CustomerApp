@@ -1,0 +1,46 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/ClientApp/dist
+/ClientApp/tmp
+/ClientApp/out-tsc
+/ClientApp/bazel-out
+
+# Node
+/ClientApp/node_modules
+/ClientApp/npm-debug.log
+/ClientApp/yarn-error.log
+
+# IDEs and editors
+/ClientApp/.idea/
+/ClientApp/.project
+/ClientApp/.classpath
+/ClientApp/.c9/
+/ClientApp/*.launch
+/ClientApp/.settings/
+/ClientApp/*.sublime-workspace
+
+# Visual Studio Code
+/ClientApp/.vscode/*
+/.vscode/*
+/ClientApp/!.vscode/settings.json
+/ClientApp/!.vscode/tasks.json
+/ClientApp/!.vscode/launch.json
+/ClientApp/!.vscode/extensions.json
+/ClientApp/.history/*
+
+# Miscellaneous
+/ClientApp/.angular/cache
+/ClientApp.sass-cache/
+/ClientApp/connect.lock
+/ClientApp/coverage
+/ClientApp/libpeerconnection.log
+/ClientApptestem.log
+/ClientApp/typings
+
+# System files
+/ClientApp/.DS_Store
+/ClientApp/Thumbs.db
+
+/obj
+/bin

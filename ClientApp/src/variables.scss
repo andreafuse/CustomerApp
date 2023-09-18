@@ -1,0 +1,79 @@
+@use '@angular/material' as mat;
+
+$light-text: #ffffff;
+$light-primary-text: $light-text;
+
+$dark-text: #000000;
+$dark-primary-text: rgba($dark-text, 0.87);
+
+
+$env-primary: #00435C;
+$env-accent: #86bc25;
+
+$mat-primary: (
+		main: $env-primary,
+		lighter: lighten($env-primary, 40%),
+		darker: darken($env-primary, 4%),
+		200: $env-primary, // For slide toggle
+		contrast: (
+			main: white,
+			lighter: rgba(black, 0.87),
+			darker: white,
+		)
+);
+
+
+$app-theme-primary: mat.define-palette($mat-primary, main, lighter, darker);
+
+
+$mat-accent: (
+		main: $env-accent,
+		lighter: $env-accent,
+		darker: $env-accent,
+		200: $env-accent, // For slide toggle,
+		contrast: (
+			main: rgba(black, 0.87),
+			lighter: rgba(black, 0.87),
+			darker: white,
+		)
+);
+
+
+$app-theme-accent: mat.define-palette($mat-accent, main, lighter, darker);
+
+$mat-warn: ( main: #ffa500, lighter: #ffe4b3, darker: #ff8a00, 200: #ffa500, // For slide toggle,
+contrast: ( main: rgba(black, 0.87), lighter: rgba(black, 0.87), darker: rgba(black, 0.87) ) );
+$app-theme-warn: mat.define-palette($mat-warn, main, lighter, darker);
+
+
+$app-typography: mat.define-typography-config( 
+    $font-family: 'Roboto, "Helvetica Neue", sans-serif', 
+    // $display-4: mat.define-typography-level(112px, 112px, 300,  $letter-spacing: -0.05em),
+    // $display-3: mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+    // $display-2: mat.define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+    // $display-1: mat.define-typography-level(34px, 40px, 400),
+    // $headline: mat.define-typography-level(24px, 32px, 400),
+    // $title: mat.define-typography-level(20px, 32px, 500),
+    // $subheading-2: mat.define-typography-level(18px, 28px, 400),
+    // $subheading-1: mat.define-typography-level(17px, 24px, 400),
+    $body-2: mat.define-typography-level(16px, 24px, 500),
+    $body-1: mat.define-typography-level(16px, 20px, 400),
+    $caption: mat.define-typography-level(14px, 20px, 400),
+    $button: mat.define-typography-level(16px, 16px, 500),
+    // $input: mat.define-typography-level(16px, 1.125, 400)
+);
+
+$app-theme: mat.define-light-theme((
+    color: (
+        primary: $app-theme-primary,
+        accent: $app-theme-accent,
+        warn: $app-theme-warn
+    ),
+    typography:  $app-typography
+));
+
+$theme-colors-map: map-get($app-theme, color);
+$theme-colors-background-map: map-get($theme-colors-map, background);
+
+// Scommentare per stampare tutti i valori nella console di compilazione
+// @debug $app-theme;
